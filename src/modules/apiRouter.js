@@ -15,7 +15,10 @@ let customerroutes=require("./users/customer/customer.routes");
 let packageroutes=require("./package/package.routes");
 let verifyuser=require("./users/verifyToken").verifyToken;
 
+let authroutes=require("./auth/auth.routes");
 
+
+apiRouter.use('/auth',authroutes);
 apiRouter.use('/admin', verifyadmin,adminroutes);
 apiRouter.use('/manager', verifymanager,managerroutes);
 apiRouter.use('/worker',verifyworker,workerroutes);

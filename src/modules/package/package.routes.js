@@ -5,7 +5,7 @@ const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
-router.get('/createpackage',packageController.createpackage);
-router.get('/:packageid',packageController.findpackagebyid)
+router.post('/createpackage',packageController.createpackage);
+router.get('/package/:packageid',packageController.findpackagebyid)
 
 module.exports=router;

@@ -8,7 +8,7 @@ const {
   const Safehouse = require("../../safeHouse/safeHouse.model");
   const User=require("../users.model");
 
-  module.exports.getallpackages=(req,res)=>{
+  module.exports.getallpackages=async (req,res)=>{
     let safeboxid = req.params.safeboxid;
     let safebox = await Safebox.findById(safeboxid).exec();
     if (!safebox) {

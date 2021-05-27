@@ -62,5 +62,8 @@ module.exports.assignToSafehouse = async (req, res) => {
 };
 
 module.exports.createSafehouse=async(req,res)=>{
-    
+    let safehouse=new Safehouse({});
+    safehouse=safehouse.save();
+    let result = generateResponse(200, createSuccessMessage(safehouse));
+    return res.status(result.status).json(result.result);
 }

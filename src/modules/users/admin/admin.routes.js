@@ -9,5 +9,6 @@ router.get('/getallpackages',adminController.getallpackages);
 router.get('/getallsafehouses',adminController.getallsafehouses);
 router.get('/:safehouseid/packages',adminController.safeHousepackages);
 router.post('/:safehouseid/assign',adminController.assignToSafehouse);
+router.get('/createsafehouse',adminController.createSafehouse)
 
 module.exports=router;

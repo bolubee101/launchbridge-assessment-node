@@ -14,6 +14,12 @@ const userSchema = new Schema({
       type:String,
       enum:['administrator','manager','worker','customer'],
       default:"customer"
+  },
+  safeBox:{
+    type:Schema.Types.ObjectId
+  },
+  safeHouse:{
+    type:Schema.Types.ObjectId
   }
 },{
   timestamps: true

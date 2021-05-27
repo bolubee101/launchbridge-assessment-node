@@ -1,10 +1,10 @@
-const { jwtsecret } = require('../../../config/configuration');
+const { jwtsecret } = require("../../config/configuration");
 const {verify} = require('jsonwebtoken');
 const {
     generateResponse,
     createError,
     createSuccessMessage,
-  } = require("../../../utils/response");
+  } = require("../../utils/response");
 
 const verifyToken = async (req, res, next) => {
   const tokenHeader = req.headers['authorization']
@@ -13,6 +13,7 @@ const verifyToken = async (req, res, next) => {
       try {
         const data = await verify(token, jwtsecret)
         req.userid = data.userid
+        console.log(data.userid)
         next();
       } catch (error) {
         console.log(error.message)
