@@ -17,3 +17,7 @@ volumes: ['./:/usr/src/app']
 # To re-build
 docker-compose build
 ```
+
+## documentation at: 
+
+https://documenter.getpostman.com/view/14585255/TzXxixac
