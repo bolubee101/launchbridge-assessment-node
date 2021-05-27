@@ -1,10 +1,10 @@
 const express = require('express');
-const workerController=require("./worker.controller");
+const customerController=require("./customer.controller");
 
 const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
-router.get('/:safeboxid/getallpackages',workerController.getallpackages);
+router.get('/getallpackages',customerController.allpackages);
 
 module.exports=router;
