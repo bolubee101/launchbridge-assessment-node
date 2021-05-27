@@ -18,6 +18,13 @@ volumes: ['./:/usr/src/app']
 docker-compose build
 ```
 
-## documentation at: 
+## API documentation at: 
 
 https://documenter.getpostman.com/view/14585255/TzXxixac
+
+
+## To seed db
+
+```
+$npm run seed
+```

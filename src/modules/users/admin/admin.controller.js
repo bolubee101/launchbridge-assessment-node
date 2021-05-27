@@ -6,14 +6,15 @@ const {
 
 const Package = require("../../package/package.model");
 const Safehouse = require("../../safeHouse/safeHouse.model");
+const User = require("../../users/users.model");
 
 module.exports.signup = async (req, res) => {
   const { name, email, password } = req.body;
   try {
     let hash = await bcrypt.hash(password, 10);
-    let user = new User({ name, email, password: hash, role:"admin" });
+    let user = new User({ name, email, password: hash, role: "admin" });
     await user.save();
-    var token = jwt.sign({ userid:user._id }, config.jwtsecret);
+    var token = jwt.sign({ userid: user._id }, config.jwtsecret);
     result = generateResponse(200, createSuccessMessage({ token, user }));
     return res.status(result.status).json(result.result);
   } catch (err) {
@@ -76,9 +77,26 @@ module.exports.assignToSafehouse = async (req, res) => {
   }
 };
 
-module.exports.createSafehouse=async(req,res)=>{
-    let safehouse=new Safehouse({});
-    safehouse=safehouse.save();
-    let result = generateResponse(200, createSuccessMessage(safehouse));
+module.exports.createSafehouse = async (req, res) => {
+  let safehouse = new Safehouse({});
+  safehouse = safehouse.save();
+  let result = generateResponse(200, createSuccessMessage(safehouse));
+  return res.status(result.status).json(result.result);
+};
+module.exports.finduser = async (req, res) => {
+  let role = req.query.role;
+  try {
+    if (role) {
+      let users = await User.find({ role }).exec();
+      let result = generateResponse(200, createSuccessMessage(users));
+      return res.status(result.status).json(result.result);
+    } else {
+      let users = await User.find({}).exec();
+      let result = generateResponse(200, createSuccessMessage(users));
+      return res.status(result.status).json(result.result);
+    }
+  } catch (err) {
+    let result = generateResponse(200, createError(err.message));
     return res.status(result.status).json(result.result);
-}
+  }
+};

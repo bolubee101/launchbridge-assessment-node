@@ -12,7 +12,7 @@ const userSchema = new Schema({
   },
   role:{
       type:String,
-      enum:['administrator','manager','worker','customer'],
+      enum:['admin','manager','worker','customer'],
       default:"customer"
   },
   safeBox:{
