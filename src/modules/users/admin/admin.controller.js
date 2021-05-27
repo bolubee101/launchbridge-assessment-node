@@ -37,9 +37,9 @@ module.exports.safeHousepackages = async (req, res) => {
   }
 };
 
-module.exports = assignToSafehouse = async (req, res) => {
-  let packageid = req.query.packageid;
-  let safehouseid = req.query.safehouseid;
+module.exports.assignToSafehouse = async (req, res) => {
+  let packageid = req.body.packageid;
+  let safehouseid = req.params.safehouseid;
   let package = await Package.findById(packageid).exec();
   if (!package) {
     let result = generateResponse(404, createError("Package does not exist"));
@@ -60,3 +60,7 @@ module.exports = assignToSafehouse = async (req, res) => {
     }
   }
 };
+
+module.exports.createSafehouse=async(req,res)=>{
+    
+}

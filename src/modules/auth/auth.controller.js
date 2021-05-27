@@ -17,7 +17,7 @@ module.exports.login = async (res, req) => {
     } else {
       if (await bcrypt.compare(userDTO.password, user.password)) {
         delete user.password;
-        let token = jwt.sign({ email, role: user.role }, config.jwtsecret);
+        let token = jwt.sign({ userid:user._id, role: user.role }, config.jwtsecret);
         result = generateResponse(200, createSuccessMessage({ token, user }));
         return res.status(result.status).json(result.result);
       } else {

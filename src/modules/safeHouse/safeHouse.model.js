@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const houseSchema = new Schema({
   managedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref:'Manager',
+    ref:'User',
   }
 },{
   timestamps: true

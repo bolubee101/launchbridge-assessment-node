@@ -1,6 +1,16 @@
 const express = require('express');
 const apiRouter = express.Router();
 
+let adminroutes=require("./users/admin/admin.routes");
+let verifyadmin=require("./users/admin/admin.middleware");
+let managerroutes=require("./users/manager/manager.routes");
+let verifymanager=require("./users/manager/manager.middleware");
+
+
+
+
+apiRouter.use('/admin', verifyadmin,adminroutes)
+apiRouter.use('/manager', verifymanager,managerroutes)
 
 
 apiRouter.get('*', (req, res) => {
