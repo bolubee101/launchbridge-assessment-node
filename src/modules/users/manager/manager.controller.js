@@ -8,6 +8,22 @@ const {
   const Safehouse = require("../../safeHouse/safeHouse.model");
   const Safebox=require("../../safebox/safeBox.model")
 
+  module.exports.signup = async (req, res) => {
+    const { name, email, password } = req.body;
+    try {
+      let hash = await bcrypt.hash(password, 10);
+      let user = new User({ name, email, password: hash, role:"manager" });
+      await user.save();
+      var token = jwt.sign({ userid:user._id }, config.jwtsecret);
+      result = generateResponse(200, createSuccessMessage({ token, user }));
+      return res.status(result.status).json(result.result);
+    } catch (err) {
+      result = generateResponse(400, createError(err.message));
+      return res.status(result.status).json(result.result);
+    }
+  };
+  
+
   module.exports.getallpackages = async (req, res) => {
     let safeHouseid=req.params.safehoseid;
     let safehouse=await Safehouse.findById(safeHouseid).exec();

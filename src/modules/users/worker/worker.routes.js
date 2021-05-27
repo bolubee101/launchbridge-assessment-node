@@ -5,6 +5,7 @@ const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
+router.get('/signup',workerController.signup);
 router.get('/:safeboxid/getallpackages',workerController.getallpackages);
 
 module.exports=router;

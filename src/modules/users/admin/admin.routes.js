@@ -5,6 +5,7 @@ const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
+router.get('/signup',adminController.signup);
 router.get('/getallpackages',adminController.getallpackages);
 router.get('/getallsafehouses',adminController.getallsafehouses);
 router.get('/:safehouseid/packages',adminController.safeHousepackages);
