@@ -11,9 +11,9 @@ const verifyToken = async (req, res, next) => {
   if (typeof tokenHeader !== 'undefined') {
       const token = tokenHeader.split(' ')[1]
       try {
-        const data = verify(token, jwtsecret)
+        const data = await verify(token, jwtsecret)
         req.userid = data.userid
-        if(data.role!=="manager"){
+        if(data.role!=="worker"){
             let result=generateResponse(401,createError("unauthorized"));
             return res.status(result.status).json(result.result);
         }else next();
@@ -24,7 +24,7 @@ const verifyToken = async (req, res, next) => {
       }
   } else {
     let result=generateResponse(401,createError("unauthorized"));
-    return res.status(result.status).json(result.result);
+        return res.status(result.status).json(result.result);
   }
 }
 
