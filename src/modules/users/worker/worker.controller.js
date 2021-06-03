@@ -3,6 +3,10 @@ const {
     createError,
     createSuccessMessage,
   } = require("../../../utils/response");
+
+  var bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("../../../config/configuration");
   
   const Package = require("../../package/package.model");
   const Safehouse = require("../../safeHouse/safeHouse.model");
