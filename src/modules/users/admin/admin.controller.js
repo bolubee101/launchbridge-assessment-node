@@ -51,7 +51,7 @@ module.exports.safeHousepackages = async (req, res) => {
     let result = generateResponse(404, createError("safehouse does not exist"));
     return res.status(result.status).json(result.result);
   } else {
-    let packages = await Packages.find({ safeHouse: safehouseid }).exec();
+    let packages = await Package.find({ safeHouse: safehouseid }).exec();
     let result = generateResponse(200, createSuccessMessage(packages));
     return res.status(result.status).json(result.result);
   }
@@ -118,7 +118,7 @@ module.exports.assignManager=async(req,res)=>{
         let result = generateResponse(400, createError("safehouse does not exist"));
         return res.status(result.status).json(result.result);
       }else if(safehouse.managedBy){
-        let result = generateResponse(400, createError("Safehouse is already"));
+        let result = generateResponse(400, createError("Safehouse is already being managed"));
         return res.status(result.status).json(result.result);
       }else{
         let user=await User.findById(manager).exec();
@@ -157,9 +157,6 @@ module.exports.assignWorker=async(req,res)=>{
       let safehouse=await Safehouse.findById(safehouseid).exec();
       if(!safehouse){
         let result = generateResponse(400, createError("safehouse does not exist"));
-        return res.status(result.status).json(result.result);
-      }else if(safehouse.managedBy){
-        let result = generateResponse(400, createError("Safehouse is already"));
         return res.status(result.status).json(result.result);
       }else{
         let user=await User.findById(worker).exec();

@@ -28,3 +28,20 @@ https://documenter.getpostman.com/view/14585255/TzXxixac
 ```
 $npm run seed
 ```
+admin0@mail.com
+password
+
+admin1@mail.comm
+password
+
+manager0@mail.com
+password
+
+manager1@mail.com
+password
+
+worker0@mail.com
+password
+
+worker1@mail.com
+password

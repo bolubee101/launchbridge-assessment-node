@@ -98,7 +98,7 @@ module.exports.assigntobox = async (req, res) => {
 };
 
 module.exports.assignWorker = async (req, res) => {
-  let worker = req.body.manager;
+  let worker = req.body.worker;
   let safeboxid = req.body.safeboxid;
   if (!worker || !safeboxid) {
     let result = generateResponse(
