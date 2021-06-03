@@ -5,7 +5,8 @@ const houseSchema = new Schema({
   managedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref:'User',
-  }
+  },
+  workers:[mongoose.Schema.Types.ObjectId]
 },{
   timestamps: true
 });
