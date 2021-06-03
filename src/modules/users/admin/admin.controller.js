@@ -18,7 +18,7 @@ module.exports.signup = async (req, res) => {
     let hash = await bcrypt.hash(password, 10);
     let user = new User({ name, email, password: hash, role: "admin" });
     await user.save();
-    var token = jwt.sign({ userid: user._id }, config.jwtsecret);
+    var token = jwt.sign({ userid: user._id,role: user.role  }, config.jwtsecret);
     result = generateResponse(200, createSuccessMessage({ token, user }));
     return res.status(result.status).json(result.result);
   } catch (err) {
@@ -191,7 +191,7 @@ module.exports.getallusers=async (req,res)=>{
   let role=req.query.role;
   try {
     if(role){
-      let user = await User.find({role}).exec();
+      let user = await User.find({role},"-password").exec();
       let result = generateResponse(200, createSuccessMessage(user));
             return res.status(result.status).json(result.result);
     }else{

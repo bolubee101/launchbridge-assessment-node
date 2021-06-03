@@ -13,6 +13,6 @@ router.post('/:safehouseid/assignmanager',adminController.assignManager);
 router.post('/:safehouseid/assignworker',adminController.assignWorker);
 router.post('/:safehouseid/assigntosafehouse',adminController.assignToSafehouse);
 router.get('/createsafehouse',adminController.createSafehouse)
-router.get('/users')
+router.get('/users',adminController.getallusers);
 
 module.exports=router;

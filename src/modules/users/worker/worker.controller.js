@@ -19,7 +19,7 @@ const config = require("../../../config/configuration");
       let hash = await bcrypt.hash(password, 10);
       let user = new User({ name, email, password: hash, role:"worker" });
       await user.save();
-      var token = jwt.sign({ userid:user._id }, config.jwtsecret);
+      var token = jwt.sign({ userid:user._id,role: user.role  }, config.jwtsecret);
       result = generateResponse(200, createSuccessMessage({ token, user }));
       return res.status(result.status).json(result.result);
     } catch (err) {
